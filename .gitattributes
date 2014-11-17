@@ -21,8 +21,3 @@
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
 
-# Eclipse
-.project
-.classpath
-/.metadata/
-/bin/
