@@ -1,15 +1,9 @@
 package andrew.quantumScoreboard.main;
 
 import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-
-import andrew.quantumScoreboard.main.ScoreBoard.Screen;
 
 public class Main {
 	
@@ -21,7 +15,11 @@ public class Main {
 	
 	public static ScoreBoard SCOREBOARD;
 	
+	static State state;
+	
 	public static void main(String[] args) {
+		state = State.SCORING;
+		
 		// Update GUI correctly
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -44,7 +42,7 @@ public class Main {
 		frame.setTitle("Quantum Pool Scoreboard");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setUndecorated(true);
-        frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+		frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		frame.setVisible(true);
 		WINDOW_WIDTH = frame.getWidth();
 		WINDOW_HEIGHT = frame.getHeight();
@@ -52,52 +50,14 @@ public class Main {
 		SCOREBOARD.start();
 		
 		// Frame Listeners
-		frame.addKeyListener(new KeyListener() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				
-			}
-			
-			@Override
-			public void keyPressed(KeyEvent e) {
-				
-			}
-			
-			@Override
-			public void keyReleased(KeyEvent e) {
-				
-			}
-		});
-		
-		frame.addMouseListener(new MouseListener() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				
-			}
-		});
+		frame.addKeyListener(new ConsoleMan());
 		
 		// Screen
 		frame.add(SCOREBOARD.screen);
+	}
+	
+	public enum State {
+		SCORING, NAMES, GAME, FINISHED;
 	}
 	
 }
