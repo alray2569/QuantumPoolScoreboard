@@ -96,6 +96,7 @@ public class ConsoleMan implements KeyListener {
 				resetMessage();
 				break;
 			case FINISHED:
+			case PAUSED:
 				
 				break;
 			}

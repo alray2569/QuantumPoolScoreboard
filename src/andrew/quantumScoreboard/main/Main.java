@@ -57,7 +57,7 @@ public class Main {
 	}
 	
 	public enum State {
-		SCORING, NAMES, GAME, FINISHED;
+		SCORING, NAMES, GAME, FINISHED, PAUSED;
 	}
 	
 }

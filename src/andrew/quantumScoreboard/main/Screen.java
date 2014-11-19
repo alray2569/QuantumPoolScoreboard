@@ -1,9 +1,19 @@
+/*
+ * Screen.java
+ * 
+ * 11/18/2014
+ * 
+ * Andrew Ray
+ */
+
 package andrew.quantumScoreboard.main;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
+//import javax.swing.JButton;
+//import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Screen extends JPanel {
@@ -12,11 +22,11 @@ public class Screen extends JPanel {
 	
 	private static final int XBORDER = 10;
 	private static final int YBORDER = 10;
-	private static final int MESSAGEBOX_HEIGHT = 100;
+	private static final int CONSOLE_HEIGHT = 100;
 	private static final char CURSOR = '_';
 	
 	private static int tableWidth = Main.WINDOW_WIDTH - 2 * XBORDER;
-	private static int tableHeight = Main.WINDOW_HEIGHT - 2 * YBORDER - MESSAGEBOX_HEIGHT;
+	private static int tableHeight = Main.WINDOW_HEIGHT - 2 * YBORDER - CONSOLE_HEIGHT;
 	private static int cellWidth = tableWidth / 7;
 	private static int cellHeight = tableHeight / 6;
 	
@@ -51,6 +61,12 @@ public class Screen extends JPanel {
 		this.drawNumbers(g);
 		
 		ScoreBoard.checkCompletion();
+		
+//		if (ScoreBoard.checkEndOfGame()) {
+//			Main.state = Main.State.FINISHED;
+//			JOptionPane.showOptionDialog(SCOREBOARD.screen, "Game Over.", "Game over", JOptionPane.CLOSED_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { new JButton("Exit"), new JButton("New Game") }, null);
+//			Main.State = Main.State.PAUSED;
+//		}
 		
 		if (Main.state == Main.State.GAME) {
 			g.setColor(Color.LIGHT_GRAY);
@@ -128,12 +144,12 @@ public class Screen extends JPanel {
 		}
 	}
 	
-	class Cell {
-		
-		private final int left, top, width, height;
+	private class Cell {
 		
 		private static final int TEXTMARGIN_HORIZ = 2;
 		private static final int TEXTMARGIN_VERT = -15;
+
+		private final int left, top, width, height;
 		
 		public Cell(int left, int top, int width, int height) {
 			this.left = left;

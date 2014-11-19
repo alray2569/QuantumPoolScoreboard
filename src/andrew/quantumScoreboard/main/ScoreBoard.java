@@ -180,10 +180,6 @@ public class ScoreBoard {
 		return scoringMethod;
 	}
 	
-	public static enum Mode {
-		HP, VP, RP;
-	}
-	
 	public static void checkCompletion() {
 		for (int player = 0; player < 5; player++) {
 			int left = 5;
@@ -204,5 +200,24 @@ public class ScoreBoard {
 				}
 			}
 		}
+	}
+	
+	public static boolean checkEndOfGame() {
+		int alive = 5;
+		
+		for (int group = 0; group < 5; group++) {
+			if (!isGroupOut(group)) {
+				alive--;
+			}
+		}
+		
+		if (alive == 1)
+			return true;
+		else
+			return false;
+	}
+	
+	public static enum Mode {
+		HP, VP, RP;
 	}
 }
